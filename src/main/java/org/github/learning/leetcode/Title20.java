@@ -84,11 +84,57 @@ public class Title20 {
 
     /**
      * Best solution
+     * Runtime: 3 ms
      * @param s
      * @return
      */
     public boolean isValidBest(String s) {
-        return true;
+        boolean isValid = true;
+
+        char[] characters = s.toCharArray();
+
+        int stackSize = 0;
+        char[] stack = new char[characters.length];
+
+        for (int index = 0; isValid && (index < characters.length); ++index) {
+            char thisChar = s.charAt(index);
+
+            if (thisChar == ')') {
+                //  case ')':
+                if ((stackSize > 0) && (stack[stackSize-1] == '(')) {
+                    --stackSize;
+                } else {
+                    isValid = false;
+                }
+                //  break;
+            }else if(thisChar == '}')  {
+                if ((stackSize > 0) && (stack[stackSize-1] == '{')) {
+                    --stackSize;
+                } else {
+                    isValid = false;
+                }
+                // break;
+            } else if(thisChar == ']'){
+                if ((stackSize > 0) && (stack[stackSize-1] == '[')) {
+                    --stackSize;
+                } else {
+                    isValid = false;
+                }
+                //   break;
+            }else{
+                stack[stackSize++] = thisChar;
+                //  break;
+            }
+            // case '}':
+
+            //  case ']':
+
+            // default:
+
+            // }
+        }
+
+        return isValid && (stackSize == 0);
     }
 
     public static void main(String[] args) {
