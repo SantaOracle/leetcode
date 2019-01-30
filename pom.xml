@@ -6,7 +6,12 @@
 
     <groupId>org.github.learning</groupId>
     <artifactId>leetcode</artifactId>
+    <packaging>pom</packaging>
     <version>1.0</version>
+    <modules>
+        <module>shijx5514</module>
+        <module>shijx5514.leetcode</module>
+    </modules>
 
     <properties>
         <!--project-->
