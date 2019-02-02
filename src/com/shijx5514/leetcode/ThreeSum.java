@@ -5,7 +5,7 @@ import java.util.*;
 import com.google.common.collect.Lists;
 
 /**
- * leetcode15 3SUM
+ * leetcode15 3SUM ,16,17两题解法相同，不想写了。
  * @author shijiaxin02
  * @date 2018/2/1
  * 根本思想是将a+b+c = 0 装换位 a+b = c，然后用求一个数组中和为c的两个数的方式解题，使用hashmap。理论是复杂度为n2，但是下面的代码运行时超时，暂时不知道是为了什么
