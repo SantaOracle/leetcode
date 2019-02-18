@@ -35,6 +35,7 @@ public class L139 {
 
     /**
      * p(i) = p(i-h) && s(i-h,i)
+     * 中间拆分的，需要找到一个遍历顺序
      * 即从小的index开始，倒着看是否有word可以对应，再加个备忘录。
      * @param s
      * @param wordDict
