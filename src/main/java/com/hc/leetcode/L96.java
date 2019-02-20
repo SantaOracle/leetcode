@@ -2,6 +2,7 @@ package com.hc.leetcode;
 
 public class L96 {
     /**
+     * 左子树的组合乘以右子树的组合
      * Runtime: 0 ms, faster than 100.00% of Java online submissions for Unique Binary Search Trees.
      * Memory Usage: 34.5 MB, less than 20.20% of Java online submissions for Unique Binary Search Trees.
      * @param n
