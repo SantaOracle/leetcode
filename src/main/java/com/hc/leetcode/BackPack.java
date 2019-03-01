@@ -16,7 +16,7 @@ public class BackPack {
             return 0;
         }
         //size个物品，C个重量。
-        int[][] dp = new int[size][c];
+        int[][] dp = new int[size][c+1];
         //初始化第一行
         //仅考虑容量为C的背包放第0个物品的情况
         //将第一个物品放入所有重量小于等于C的背包
@@ -37,7 +37,7 @@ public class BackPack {
     }
 
     /**
-     * 多重背包问题
+     * 完全背包问题
      * f[i][v] = max(f[i-1][v-k*w[i]] + k*v[i] | 0 <= k <= v/w[i])
      * @param w
      * @param v
@@ -50,7 +50,7 @@ public class BackPack {
             return 0;
         }
 
-        int[][] dp = new int[size][c];//各种组合的总价值。
+        int[][] dp = new int[size][c+1];//各种组合的总价值。
         for(int i = 0; i <=c; i ++){
             int value = i/w[0] * v[0];
             dp[0][i] = value;
@@ -70,9 +70,47 @@ public class BackPack {
                 dp[i][cap] = maxValue;
             }
         }
-        return dp[size-1][c-1];
+        return dp[size-1][c];
     }
 
+    /**
+     * 带数量限制的多重背包
+     * @param w
+     * @param v
+     * @param c
+     * @return
+     */
+    public int backpackLimitMulti(int[] w, int nums[],int[] v, int c){
+        int size = w.length;
+        if(size == 0){
+            return 0;
+        }
+
+        int[][] memo = new int[size][c+1];
+
+        for(int i = 0; i <=c; i++){
+            int num = i/w[0];
+            num = num>nums[0] ? nums[0] : num;
+            memo[0][i] = num *  v[0];
+        }
+
+        for(int i = 1; i < size; i ++){
+            for(int m = 0; m <= c; m++){
+                int maxV = 0;
+                int num = m/w[i];
+                num = num > nums[i] ? nums[i] :num;
+                for(int n = 0; n <= num; n++) {
+                    int value = n * v[i];
+                    if(value > maxV){
+                        maxV = value;
+                    }
+                }
+                memo[m][i] = maxV;
+            }
+        }
+
+        return memo[size-1][c];
+    }
 
 
 }
