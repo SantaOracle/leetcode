@@ -3,7 +3,7 @@ package org.github.learning.leetcode;
 /**
  * <a href="https://leetcode.com/problems/unique-binary-search-trees/"></a>
  * Status:  AC
- * Runtime: 1460 ms, faster than 7.29%
+ * Runtime: 0 ms, faster than 100%
  * @author peiheng.jiang create on 2019/04/03
  */
 public class Title96 {
@@ -43,11 +43,15 @@ public class Title96 {
         for (int index = 0; index < n; index++) {
             res += numTrees(index) * numTrees(n - 1 - index);
         }
+        // record calculated res
+        if (n < cache.length) {
+            cache[n] = res;
+        }
         return res;
     }
 
     public static void main(String[] args) {
         Title96 title96 = new Title96();
-        System.out.println(title96.numTrees(3));
+        System.out.println(title96.numTrees(20));
     }
 }
