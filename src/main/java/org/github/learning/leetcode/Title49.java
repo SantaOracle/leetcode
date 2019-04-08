@@ -43,26 +43,38 @@ public class Title49 {
         PRIME_CACHE = cache;
     }
 
-
+    /**
+     * My solution
+     * 26个英文字母用质数进行标记
+     * 遍历每一个字符串时，hash策略为，对每一个字符对应的质数进行相乘
+     * 把hash值和字符串存到一个map里
+     * @param strs
+     * @return
+     */
     public List<List<String>> groupAnagrams(String[] strs) {
         if (strs == null || strs.length == 0) {
             return Collections.emptyList();
         }
         Map<Integer, List<String>> resMap = new HashMap<>();
         for (String s : strs) {
-            int bucket = 1;
-            for (int index = 0; index < s.length(); index++) {
-                char c = s.charAt(index);
-                bucket *= PRIME_CACHE.get(c);
-            }
-            List<String> list = resMap.get(bucket);
+            int hash = hash(s);
+            List<String> list = resMap.get(hash);
             if (list == null) {
                 list = new ArrayList<>();
             }
             list.add(s);
-            resMap.put(bucket, list);
+            resMap.put(hash, list);
         }
         return new ArrayList<>(resMap.values());
+    }
+
+    private int hash(String s) {
+        int bucket = 1;
+        for (int index = 0; index < s.length(); index++) {
+            char c = s.charAt(index);
+            bucket *= PRIME_CACHE.get(c);
+        }
+        return bucket;
     }
 
     public static void main(String[] args) {
