@@ -16,6 +16,11 @@ public class Title17 {
     String originDigits;
     LinkedList<Character> charLinks;
 
+    /**
+     * My Solution
+     * @param digits
+     * @return
+     */
     public List<String> letterCombinations(String digits) {
         if (digits == null || digits.length() == 0) {
             return Collections.emptyList();
@@ -78,7 +83,42 @@ public class Title17 {
         }
     }
 
-    public static void main(String[] args) {
+    /***************** better solution ******************/
 
+    String [] keypad = {" ","*","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
+    List<String> output = new ArrayList<>();
+
+    /**
+     * Better Solution
+     * @param digits
+     * @return
+     */
+    public List<String> letterCombinationsBetter(String digits) {
+        if(digits.equals("") ){
+            return output;
+        }
+        if(digits.equals("0") || digits.equals("1")){
+            return Arrays.asList(keypad[Integer.valueOf(digits)]);
+        }
+
+        combine("",digits);
+        return output;
+    }
+    //currentString =""     //nextDigits =23
+    private void combine(String currentString, String nextDigits){
+        if(nextDigits.length() == 0){
+            output.add(currentString);
+            return ;
+        }
+        int digit=Integer.valueOf(nextDigits.substring(0,1)); //2
+        String s = keypad[digit]; //s = abc
+        char[] chars = s.toCharArray(); //{a,b,c}
+
+        for(char c : chars){ //c=a
+            String temp = currentString+c; //a
+            //backtrack using the current char and charset from next String
+            //temp=a  //nextDigits =3
+            combine(temp , nextDigits.substring(1));
+        }
     }
 }
