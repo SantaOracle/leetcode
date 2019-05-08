@@ -6,14 +6,14 @@ import java.util.Random;
  * 478
  * Created by congcong.han on 2019/3/10.
  */
-public class Solution {
+public class L478 {
     private double radius;
     private double x_center;
     private double y_center;
     private double area;
     private Random random = new Random();
 
-    public Solution(double radius, double x_center, double y_center) {
+    public L478(double radius, double x_center, double y_center) {
         this.radius = radius;
         this.x_center = x_center;
         this.y_center = y_center;

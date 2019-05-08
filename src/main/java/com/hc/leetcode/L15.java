@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class LeetCode15 {
+public class L15 {
 
     public List<List<Integer>> threeSum(int[] nums) {
         List<List<Integer>> ret = new ArrayList<>();
@@ -79,7 +79,7 @@ public class LeetCode15 {
     public static void main(String[] args){
 
         int[] nums = new int[]{-4,-2,-2,-2,0,1,2,2,2,3,3,4,4,6,6};
-        List<List<Integer>> ret = new LeetCode15().threeSum(nums);
+        List<List<Integer>> ret = new L15().threeSum(nums);
         System.out.println(ret);
 
     }

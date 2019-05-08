@@ -1,6 +1,6 @@
 package com.hc.leetcode;
 
-public class LeetCode53 {
+public class L53 {
     /**
      * 状态转移方程为：sum(j) = max(sum(j-1) + aj, aj)
      * 即如果前面一个状态是负的，只取aj便可以，否则前面的相加

@@ -1,6 +1,6 @@
 package com.hc.leetcode;
 
-public class LeetCode07 {
+public class L7 {
     public int reverse(int x) {
         int ret = 0;
 
@@ -17,7 +17,7 @@ public class LeetCode07 {
     }
 
     public static void main(String[] args){
-        int ret = new LeetCode07().reverse(-2147483648);
+        int ret = new L7().reverse(-2147483648);
         System.out.println(ret);
         System.out.println(Integer.MAX_VALUE);
     }

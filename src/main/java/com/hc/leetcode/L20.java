@@ -3,7 +3,7 @@ package com.hc.leetcode;
 /**
  * Runtime: 3 ms, faster than 100.00% of Java online submissions for Valid Parentheses.
  */
-public class LeetCode20 {
+public class L20 {
     public boolean isValid(String s) {
 
         char[] stack = new char[s.length()];
