@@ -23,8 +23,9 @@ public class SearchInRotatedSortedArray {
         int j = nums.length - 1;
         while (i <= j) {
             int middle = (i + j) / 2;
-            if (nums[middle] == target)
+            if (nums[middle] == target) {
                 return middle;
+            }
 
             if ((nums[i] <= target && nums[middle] > target) || ((nums[i] > nums[middle] && (nums[i] <= target || nums[middle] >= target)))) {
                 j = middle - 1;
