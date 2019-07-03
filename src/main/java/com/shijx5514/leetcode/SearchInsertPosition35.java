@@ -12,26 +12,28 @@ package com.shijx5514.leetcode;
  */
 public class SearchInsertPosition35 {
     public int searchInsert(int[] nums, int target) {
-        if(nums == null) return -1;
-        if(nums.length == 0) return 0;
+        if(nums == null) {return -1;}
+        if(nums.length == 0) {return 0;}
         return search(nums, target, 0, nums.length-1);
     }
 
-    public int search(int[] nums, int target, int start, int end)
-    {
-        if(target < nums[start]) return start; /*if target is smaller than the first element, it should sit at the start*/
-        if(target > nums[end]) return end+1; /*if target is larger than the last element, it should sit next to end*/
+    public int search(int[] nums, int target, int start, int end) {
+        if (target < nums[start]) {
+            return start;
+        } /*if target is smaller than the first element, it should sit at the start*/
+        if (target > nums[end]) {
+            return end + 1;
+        } /*if target is larger than the last element, it should sit next to end*/
 
-        int mid = (start+end)/2;
-        if(target == nums[mid]) return mid; /*return the index if target is found*/
-        else if(target > nums[mid])
-        {
-            return search(nums, target, mid+1, end); /*search right half if target greater than mid*/
+        int mid = (start + end) / 2;
+        if (target == nums[mid]) {
+            return mid;
+        } /*return the index if target is found*/ else if (target > nums[mid]) {
+            return search(nums, target, mid + 1, end); /*search right half if target greater than mid*/
+        } else {
+            return search(nums, target, start, mid - 1); /*search left half if target smaller than mid*/
         }
-        else
-        {
-            return search(nums, target, start, mid-1); /*search left half if target smaller than mid*/
-        }
+    }
 
     public static void main(String[] args) {
         SearchInsertPosition35 f = new SearchInsertPosition35();
