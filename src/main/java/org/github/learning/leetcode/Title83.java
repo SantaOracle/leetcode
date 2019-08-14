@@ -8,7 +8,7 @@ import java.util.Set;
 /**
  * <a href="https://leetcode.com/problems/remove-duplicates-from-sorted-list/"></a>
  * Status:  AC
- * Runtime: 2 ms, faster than 6.22%
+ * Runtime: 1 ms, faster than 26.10%
  * Create by peiheng.jiang on 2019/8/14
  */
 public class Title83 {
@@ -17,20 +17,14 @@ public class Title83 {
         if (head == null) {
             return head;
         }
-        Set<Integer> set = new HashSet<>();
-        ListNode prev = head;
-        ListNode curt = head;
-        while (curt != null) {
-            if (set.contains(curt.val)) {
-                prev.next = curt.next;
-                curt = curt.next;
-            } else {
-                set.add(curt.val);
-                if (prev != curt) {
-                    prev = curt;
-                }
-                curt = curt.next;
+        ListNode p1 = head;
+        ListNode p2 = p1.next;
+        while (p1 != null || p2 != null) {
+            if (p2 == null || p1.val != p2.val) {
+                p1.next = p2;
+                p1 = p2;
             }
+            p2 = p2 == null ? null : p2.next;
         }
         return head;
     }
