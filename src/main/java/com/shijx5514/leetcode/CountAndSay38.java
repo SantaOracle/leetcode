@@ -14,7 +14,9 @@ public class CountAndSay38 {
      * @return
      */
     private static String countHelper(String str, int n) {
-        if (n == 1) return str;
+        if (n == 1) {
+            return str;
+        }
         else {
             //求下一个数
             StringBuilder stringBuilder = new StringBuilder();
