@@ -40,7 +40,7 @@ public class CombinationSum39 {
             //初始化map
             map.put(i,new HashSet<>());
             //对candidates数组进行循环
-            for(int j = 0;j < len&&candidates[j] <= target;j++){
+            for(int j = 0; j < len && candidates[j] <= target; j++){
                 if(i == candidates[j]){
                     //相等即为相减为0的情况，直接加入set集合即可
                     List<Integer> temp = new ArrayList<>();
