@@ -17,7 +17,7 @@ public class Title80 {
         }
         int finalIndex = 0;
         int iteratorIndex = 0;
-        while (iteratorIndex < nums.length) {
+        while (true) {
             iteratorIndex++;
             if (iteratorIndex >= nums.length) {
                 break;
