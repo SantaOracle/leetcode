@@ -70,5 +70,10 @@ public class Title40 {
     public static void main(String[] args) {
         Title40 title40 = new Title40();
         System.out.println(title40.combinationSum2(new int[]{2, 5, 2, 1, 2}, 5));
+
+        int a = 5;
+        int b = 3;
+        double c = (double) a / b;
+        System.out.println(c);
     }
 }
