@@ -4,9 +4,6 @@ import java.text.DecimalFormat;
 import java.util.*;
 import java.util.stream.IntStream;
 
-/**
- * @author jiangpeiheng create on 2020/7/8
- */
 public class TitleOther {
 
     private static Random ran = new Random();
@@ -19,7 +16,7 @@ public class TitleOther {
      * @param n
      * @return
      */
-    public static int calLongest(int n, int[][] map,  Map<Integer, Integer> record) {  // 假设n = 5
+    private static int calLongest(int n, int[][] map, Map<Integer, Integer> record) {  // 假设n = 5
         // 如果之前计算过，直接取就可以了
         Integer path = record.get(n);
         if (path != null) {
@@ -28,7 +25,7 @@ public class TitleOther {
 
         // 没有计算过，看下这个点是不是孤立的
         List<Integer> startList = new ArrayList<>(n);
-        for (int start=1; start<=n; start++) {
+        for (int start = 1; start <= n; start++) {
             if (map[start][n] == 1) {
                 startList.add(start);
             }
@@ -56,25 +53,51 @@ public class TitleOther {
      * @param n 点的个数
      * @param p 每条路径的生成概率, eg. 0.7
      */
-    public static int[][] genMap(int n, float p) {
-        int[][] map = new int[n+1][n+1];
+    private static int[][] genMap(int n, float p, float[][] templateMap) {
+        int[][] map = new int[n + 1][n + 1];
 
-        int thredshold = (int) (p * 100);
-
-        for (int i=1; i<=n; i++) {
-            for (int j=1; j<=n; j++) {
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= n; j++) {
                 if (i >= j) {
                     map[i][j] = 0;
                 } else {
-                    int g = ran.nextInt(100);
-                    map[i][j] = g <= thredshold ? 1 : 0;
+                    map[i][j] = templateMap[i][j] > p ?
+                            0 : 1;
                 }
             }
         }
         return map;
     }
 
-    public static void printMap(int[][] map) {
+    /**
+     * 生成模板映射表
+     *
+     * @param n     矩阵阶数
+     * @param size  样本数量，决定了模板数字的精度
+     * @return
+     */
+    private static float[][] genTemplateMap(int n, int size) {
+        float[][] templateMap = new float[n+1][n+1];
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= n; j++) {
+                templateMap[i][j] = ((float) ran.nextInt(size)) / size;
+            }
+        }
+        return templateMap;
+    }
+
+    private static void printMap(int[][] map) {
+        int n = map.length - 1;
+        IntStream.rangeClosed(1, n).forEach(i -> {
+            IntStream.rangeClosed(1, n).forEach(j -> {
+                System.out.print(map[i][j]);
+                System.out.print(" ");
+            });
+            System.out.println();
+        });
+    }
+
+    private static void printMap(float[][] map) {
         int n = map.length - 1;
         IntStream.rangeClosed(1, n).forEach(i -> {
             IntStream.rangeClosed(1, n).forEach(j -> {
@@ -96,30 +119,34 @@ public class TitleOther {
 
     public static void main(String[] args) {
         // input
-        int n = 1200;
-        int t = 100;
+        int n = 20;
+        int t = 1;
+        int size = 100;
 
-        int size = 1000;
+        // init map[][]
+        float[][] templateMap = genTemplateMap(n, size);
 
         IntStream.rangeClosed(1, size).forEach(indexp -> {
             float p = ((float) indexp) / size;
 //            System.out.println(String.format("p=Ts", p));
 
-            // init map[][]
-            int[][] map = genMap(n, p);
+//            System.out.println("----------tem map start---------");
+//            printMap(templateMap);
+//            System.out.println("----------tem map end---------");
+            int[][] map = genMap(n, p, templateMap);
             Map<Integer, Integer> record = new HashMap<>();
 //            printMap(map);
 
             // calculate longest
             int max = 0;
-            for (int index=1; index<=n; index++) {
+            for (int index = 1; index <= n; index++) {
                 max = Math.max(calLongest(index, map, record), max);
             }
 
             float target = calTarget(n, t, record);
 
-            System.out.println(String.format("p=%s, path=%s, target=%s",
-                    p, max, target));
+            System.out.println(String.format("%s %s %s %s %s %s"
+                    , t, n, p, record.get(t), max, target));
         });
     }
 }
