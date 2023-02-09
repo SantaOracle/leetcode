@@ -1,7 +1,5 @@
 package org.github.learning.leetcode;
 
-import com.alibaba.fastjson.JSON;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -91,9 +89,4 @@ public class Title22 {
         }
     }
 
-    public static void main(String[] args) {
-        Title22 title22 = new Title22();
-        List<String> res = title22.generateParenthesis(3);
-        System.out.println(JSON.toJSONString(res));
-    }
 }
